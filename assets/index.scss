@@ -1,0 +1,259 @@
+// This SCSS styles will be compiled into the CSS bundle automatically.
+/*! purgecss start ignore */
+// ############################## MAIN ##############################
+// Font
+:root {
+  --hb-font-sans-serif: 'Pretendard Variable', 'Spoqa Han Sans Neo', 'Noto Sans KR', system-ui, 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  --hb-font-monospace: 'Monoplex KR Wide Nerd', D2Coding, 'D2 coding', Consolas, monospace;
+  --hb-body-font-size: 1.1rem;
+  font-feature-settings: 'calt' 1, 'case' 1, 'ccmp' 1, 'ss03' 1, 'ss05' 1, 'ss06' 1, 'ss10' 1;
+}
+b, strong { font-weight: 700; }
+.badge { --hb-badge-font-size: 0.9rem; }
+.hb-blog-post-meta { font-size: 0.9rem; }
+
+// Menu
+.hb-header-menus {
+  .dropdown-item-icon { background-image: none !important; }
+  .hb-header-menu-icon { width: 1rem; }
+  .hb-header-menu-icon-image { margin-right: 4px; width: 1rem; }
+  .hb-header-menu-icon-image-sub { width: 2rem; }
+  // Grey out some elements
+  a[href*="honkai-star-rail"], a[href*="genshin"] {
+    filter: grayscale(90%) brightness(75%);
+  }
+  a[href*="honkai-star-rail"]:hover, a[href*="genshin"]:hover {
+    filter: none;
+  }
+}
+
+// Main header taxonomy
+.nav { justify-content: space-evenly; }
+.nav-fill > .nav-link { flex: initial; }
+
+// Taxonomy
+.hb-blog-post-taxonomy-tag::before { content: '#'; }
+.hb-blog-post-taxonomy-series::before { content: '§ '; }
+
+// Post Card without image
+div.hb-blog-post-card-img-none {
+  filter: blur(2px);
+  font-size: 5rem;
+  text-transform: none;
+}
+
+// Hide Post Meta in article
+.hb-blog-post .hb-blog-post-section { display: none; }
+
+// KaTeX
+div.katex-output {
+  overflow: initial;
+}
+
+// Post style
+div.hb-blog-post-content {
+  // Blockquote
+  blockquote {
+    & { font-size: 1.1rem; margin: 0.7rem 0 0.7rem 0; }
+    &.bq {
+      // Prevent theme-class override
+      background-color: var(--hb-tertiary-bg) !important;
+      border-color: var(--hb-tertiary-color) !important;
+      border-style: dashed !important;
+      border-width: 1px !important;
+      padding: 0.5rem 1rem !important;
+    }
+    ol:first-child, ul:first-child { margin-top: 0; }
+    ol:last-child, ul:last-child, p { margin-bottom: 0; }
+    hr { margin: 0.5rem 0; }
+    table, .table { margin-bottom: 0; }
+    // Twitter embed (Not working)
+    &.twitter-tweet { font-family: var(--hb-font-sans-serif) !important; }
+  }
+  // Code Block
+  pre {
+    background-color: var(--hb-secondary-bg);
+    padding: 1rem;
+  }
+  // Headings
+  h1, h2, h3, h4, h5, h6 { margin-top: 2rem !important; }
+  // Horizontal Line
+  hr { margin: 1.5rem 0; }
+  // Image (Prevents usage of '#center', '#float-start', and '#float-end' because '#center' is applied forcibly)
+  img.img-fluid { margin: 0; }
+  picture:has(img.img-fluid) { display: flex; justify-content: center; }
+  // Input
+  input[type=checkbox] {
+    margin-right: 0.4rem;
+    transform-origin: top left;
+    transform: scale(1.25);
+  }
+  // KBD
+  kbd { .apple { font-size: 200%; line-height: 50%; vertical-align: sub; } }
+  // List
+  ul, ol {
+    & { margin-bottom: 0.7rem; margin-top: 0.7rem; }
+    li p { margin-bottom: 0; }
+  }
+  // Paragraph margin
+  p:first-child { margin-bottom: 0.7rem; margin-top: 0; }
+  p:not(:first-child) { margin: 0.7rem 0; }
+  p:last-child { margin-bottom: 0; }
+  // Strikethrough color
+  del { color: grey; }
+  // Ruby
+  ruby > rt { font-size: 75%; }
+  // Tab Size
+  & { tab-size: 2; }
+  // Table
+  table, .table {
+    --hb-table-color: var(--hb-body-color);
+    margin-bottom: 0.5rem;
+  }
+}
+
+// ############################## SHORTCODE ##############################
+// Gallery
+div.hb-blog-post-content {
+  div.gallery {
+    div.gallery-container {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+    }
+    img.img-fluid { margin: 0; }
+    figure { margin: 0; }
+  }
+  @media (max-width: 768px) {
+    div.gallery { width: 100% !important; }
+  }
+  figcaption.gallery-figcaption {
+    caption-side: bottom;
+    color: #9999A1;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    min-height: 20px;
+    text-align: center;
+    word-break: break-word;
+  }
+}
+
+// Youtube
+div.hb-blog-post-content div.youtube-container {
+  & { margin: 0 auto; }
+  div.youtube-container-inner {
+    height: 0; // width: 100%;
+    overflow: hidden;
+    padding-bottom: calc(56.25% + 50px);
+    position: relative;
+  }
+  figcaption {
+    caption-side: bottom;
+    color: #9999A1;
+    font-size: 1rem;
+    margin-top: 7px;
+    min-height: 20px;
+    text-align: center;
+    word-break: break-word;
+  }
+}
+@media (max-width: 768px) {
+  div.hb-blog-post-content div.youtube-container { max-width: 100% !important; }
+}
+
+// HB Pseudo inline-code
+span.hb-pseudo-code {
+  background: var(--hb-secondary-bg);
+  color: var(--hb-secondary-color);
+  font-family: var(--hb-font-monospace);
+  font-size: 0.875em;
+  padding: .125rem .25rem;
+  word-wrap: break-word;
+}
+
+// Link Preview (defined in 'index.ts')
+div.hb-blog-post-content link-preview {
+  & { display: block; height: 200px; }
+  figure.link-preview a.lp-link {
+    & {
+      border: 1px solid transparent;
+      box-sizing: border-box;
+      display: block;
+      height: 200px;
+      position: relative;
+      text-decoration: none;
+      z-index: 1;
+    }
+    .lp-image {
+      background-position: center;
+      background-size: cover;
+      border-right-width: 0;
+      border-right: 1px solid transparent;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 200px;
+    }
+    .lp-text {
+      & {
+        background-color: var(--hb-tertiary-bg);
+        bottom: 0;
+        box-sizing: border-box;
+        left: 201px;
+        padding: 33px 46px 0 39px;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      .lp-title {
+        color: var(--hb-dark-text-emphasis);
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.75rem;
+        margin: 0 0 10px 0 !important;
+        max-width: 95%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .lp-desc {
+        color: var(--hb-secondary-color);
+        display: -webkit-box;
+        font-size: 1rem;
+        font-weight: 300;
+        margin: 0;
+        max-height: 3rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .lp-host {
+        bottom: 24px;
+        color: var(--hb-tertiary-color);
+        font-size: 0.9rem;
+        margin: 0;
+        position: absolute;
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    & { height: 90px; }
+    figure.link-preview a.lp-link {
+      & { height: 90px; }
+      .lp-image { width: 90px; }
+      .lp-text {
+        & {
+          left: 91px;
+          padding: 13px 12px 0 20px;
+        }
+        .lp-desc { display: none; }
+        .lp-host { bottom: 10px; }
+      }
+    }
+  }
+}
+
+/*! purgecss end ignore */

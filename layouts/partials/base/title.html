@@ -1,0 +1,36 @@
+{{- $titles := slice .Title }}
+{{- if and .IsHome (eq .Title "") }}
+  {{- $titles = slice .Site.Title }}
+{{- end }}
+{{/* Append paginator title. The partial must be included after paginating. */}}
+{{- if .Store.Get "paginated" }}
+  {{- with .Paginator }}
+    {{- if gt .PageNumber 1 }}
+      {{- $titles = $titles | append (i18n "paginator_title" .) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{/* Append the sections titles. */}}
+{{- if .Site.Params.title_sections }}
+  {{/* Use filtered section titles */}}
+  {{- $sections := partial "hb-custom/functions/sections-titles" . -}}
+  {{- $depth := default 0 site.Params.title_sections_depth }}
+  {{- $dir := default "end" site.Params.title_sections_depth_dir }}
+  {{- with $depth }}
+    {{- if eq $dir "start" }}
+      {{- $sections = last . $sections }}
+    {{- else }}
+      {{- $sections = first . $sections }}
+    {{- end }}
+  {{- end }}
+  {{/* Combine sections with hard-coded separator */}}
+  {{- if gt ($sections | len) 1 -}}
+    {{- $titles = $titles | append "-" (delimit $sections "/") -}}
+  {{- end -}}
+{{- end }}
+{{/* Append the site title at the end. */}}
+{{- if not .IsHome }}
+  {{- $titles = $titles | append "-" .Site.Title }}
+{{- end }}
+{{/* Combine titles with hard-coded separator */}}
+{{- delimit $titles " " -}}

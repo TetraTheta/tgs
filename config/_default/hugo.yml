@@ -1,0 +1,133 @@
+title: TetraLog Game Story
+baseURL: https://tetratheta.github.io/tgs/
+
+# Copyright, the {year} is the placeholder of this year.
+copyright: "Copyright © {year}. TetraTheta All Rights Reserved."
+
+defaultContentLanguage: ko
+defaultContentLanguageInSubdir: false
+languageCode: ko
+
+hasCJKLanguage: false
+summaryLength: 25 # [Summary Fix] Not used. Use params.ParamSummaryLength instead.
+
+enableEmoji: true
+enableGitInfo: true
+enableInlineShortcodes: true
+enableRobotsTXT: true
+
+timeout: 120s # images processing takes a long time, it's recommended to commit the resources folder for improve the build performance.
+
+timeZone: 'Asia/Seoul'
+
+disqusShortname: 'tetralog'
+
+build:
+  writeStats: true # required by PurgeCSS.
+
+cascade:
+  # Remove unprocessed files from build result
+  - target:
+      kind: page
+      path: '/*/**'
+    build:
+      publishResources: false
+  # Disable 'first-section'
+  - target:
+      path: '/**'
+    params:
+      meta:
+        first_section: false
+
+markup:
+  goldmark:
+    extensions:
+      cjk:
+        enable: true
+        eastAsianLineBreaks: true
+      extras:
+        delete:
+          enable: true
+        insert:
+          enable: true
+        mark:
+          enable: true
+        subscript:
+          enable: true
+        superscript:
+          enable: true
+      strikethrough: false
+      typographer:
+        disable: false
+        apostrophe: "'"
+        ellipsis: '…' # ...
+        emDash: '—' # ---
+        enDash: '–' # --
+        leftAngleQuote: '《'
+        leftDoubleQuote: '"'
+        leftSingleQuote: "'"
+        rightAngleQuote: '》'
+        rightDoubleQuote: '"'
+        rightSingleQuote: '"'
+    parser:
+      attribute:
+        block: true
+        title: true
+    renderer:
+      hardWraps: true
+      unsafe: true
+  highlight:
+    lineNos: true
+    lineNumbersInTable: false
+    noClasses: false # Syntax highlighting
+    tabWidth: 2
+  tableOfContents:
+    startLevel: 1
+    endLevel: 5
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - SearchIndex # required by search module.
+    #- Offline # required by PWA module for displaying the offline pages.
+    #- WebAppManifest # required by PWA module to make your site installable.
+
+#permalinks:
+#  blog: /blog/:year/:month/:title
+
+# see https://gohugo.io/content-management/related/#configure-related-content
+related:
+  includeNewer: true
+  indices:
+  - name: keywords
+    weight: 100
+  - name: tags
+    weight: 80
+  - name: categories
+    weight: 60
+  - name: series
+    weight: 60
+  - name: authors
+    weight: 10
+  - name: date
+    weight: 10
+  threshold: 10 # for testing, increase it to suit your case.
+  toLower: false
+
+security:
+  funcs:
+    getenv:
+      - ^HUGO
+      - CI$
+      - PWD
+
+sitemap:
+  changeFreq: hourly
+  priority: 0.5
+
+taxonomies:
+  #authors: authors # multiple authors.
+  tags: tags
+  categories: categories
+  series: series

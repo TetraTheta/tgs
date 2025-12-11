@@ -1,0 +1,18 @@
+{{- $body1 := default (.Get 0) (.Get "body") -}}
+{{- $ruby1 := default (.Get 1) (.Get "ruby") -}}
+{{- $body2 := default (.Get 2) (.Get "body2") -}}
+{{- $ruby2 := default (.Get 3) (.Get "ruby2") -}}
+{{- $body3 := default (.Get 4) (.Get "body3") -}}
+{{- $ruby3 := default (.Get 5) (.Get "ruby3") -}}
+{{- $body4 := default (.Get 6) (.Get "body4") -}}
+{{- $ruby4 := default (.Get 7) (.Get "ruby4") -}}
+{{- $body5 := default (.Get 8) (.Get "body5") -}}
+{{- $ruby5 := default (.Get 9) (.Get "ruby5") -}}
+<ruby>
+<rb>{{- $body1 -}}</rb><rp>(</rp><rt>{{- $ruby1 -}}</rt><rp>)</rp>
+{{- if and $body2 $ruby2 }}<rb>{{- $body2 -}}</rb><rp>(</rp><rt>{{- $ruby2 -}}</rt><rp>)</rp>{{- end -}}
+{{- if and $body3 $ruby3 }}<rb>{{- $body3 -}}</rb><rp>(</rp><rt>{{- $ruby3 -}}</rt><rp>)</rp>{{- end -}}
+{{- if and $body4 $ruby4 }}<rb>{{- $body4 -}}</rb><rp>(</rp><rt>{{- $ruby4 -}}</rt><rp>)</rp>{{- end -}}
+{{- if and $body5 $ruby5 }}<rb>{{- $body5 -}}</rb><rp>(</rp><rt>{{- $ruby5 -}}</rt><rp>)</rp>{{- end -}}
+</ruby>
+{{- "" -}}

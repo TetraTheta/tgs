@@ -1,0 +1,32 @@
+{
+  "name": "tetralog-game-story",
+  "private": true,
+  "description": "Collection of game story",
+  "author": "TetraTheta",
+  "type": "module",
+  "scripts": {
+    "build": "bun run cli clean && hugo --gc --minify -e production && bun run cli deslash",
+    "check-update": "bun x --bun npm-check-updates",
+    "cli": "bun run --bun ./.script/cli.ts",
+    "dev": "hugo server --renderToMemory --disableFastRender -D -p 44",
+    "dev.prod": "hugo server --gc --minify --renderToMemory --disableFastRender -D -e production -p 44"
+  },
+  "dependencies": {
+    "@hbstack/node-packages": "^0.1.5",
+    "cheerio": "^1.0.0",
+    "commander": "^13.1.0",
+    "fast-sort": "^3.4.1",
+    "html-minifier-terser": "^7.2.0",
+    "minify-xml": "^4.5.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "@types/html-minifier-terser": "^7.0.2",
+    "@types/node": "^22.15.3",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.3.1",
+    "prettier": "^3.5.3",
+    "typescript-eslint": "^8.31.1"
+  }
+}

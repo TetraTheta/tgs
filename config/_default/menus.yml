@@ -1,0 +1,114 @@
+main:
+  - name: 명조
+    identifier: wuthering-waves
+    weight: 30
+    url: /wuthering-waves/
+    pre: '<img class="hb-header-menu-icon-image me-1" src="/tgs/icons/custom-png/wuthering-waves.png">'
+    params:
+      header: 명조 이야기
+      description: 명조 이야기
+  - name: 조수 임무
+    parent: wuthering-waves
+    identifier: wuthering-waves-main
+    weight: 31
+    url: /wuthering-waves/main/
+    params:
+      header: 명조 조수 임무 이야기
+      description: 명조 조수 임무 이야기
+      icon:
+        vendor: custom
+        name: wuwa-main
+  - name: 얽힌 별 임무
+    parent: wuthering-waves
+    identifier: wuthering-waves-companion
+    weight: 32
+    url: /wuthering-waves/companion/
+    params:
+      header: 명조 얽힌 별 임무 이야기
+      description: 명조 엵힌 별 임무 이야기
+      icon:
+        vendor: custom
+        name: wuwa-companion
+  - name: 위험한 임무
+    parent: wuthering-waves
+    identifier: wuthering-waves-exploration
+    weight: 33
+    url: /wuthering-waves/exploration/
+    params:
+      header: 명조 위험한 임무 이야기
+      description: 명조 위험한 임무 이야기
+      icon:
+        vendor: custom
+        name: wuwa-exploration
+  - name: 이벤트 임무
+    parent: wuthering-waves
+    identifier: wuthering-waves-event
+    weight: 34
+    url: /wuthering-waves/event/
+    params:
+      header: 명조 이벤트 임무 이야기
+      description: 명조 이벤트 임무 이야기
+      icon:
+        vendor: custom
+        name: wuwa-tutorial
+  - name: 원신
+    identifier: genshin
+    weight: 70
+    url: /genshin-impact/
+    pre: '<img class="hb-header-menu-icon-image me-1" src="/tgs/icons/custom-png/genshin-impact.png">'
+    params:
+      header: 원신 이야기
+      description: 원신 이야기
+      columns: 1
+  - name: 마신 임무
+    parent: genshin
+    identifier: genshin-archon
+    weight: 71
+    url: /genshin-impact/archon/
+    params:
+      header: 원신 마신 임무 이야기
+      description: 원신 마신 임무 이야기
+      icon:
+        vendor: custom
+        name: genshin_archon_quest
+  - name: 전설 임무
+    parent: genshin
+    identifier: genshin-story
+    weight: 72
+    url: /genshin-impact/story/
+    params:
+      header: 원신 전설 임무 이야기
+      description: 원신 전설 임무 이야기
+      icon:
+        vendor: custom
+        name: genshin_story_quest
+  - name: 월드 임무
+    parent: genshin
+    identifier: genshin-world
+    weight: 73
+    url: /genshin-impact/world/
+    params:
+      header: 원신 월드 임무 이야기
+      description: 원신 월드 임무 이야기
+      icon:
+        vendor: custom
+        name: genshin_world_quest
+  - name: 이벤트 임무
+    parent: genshin
+    identifier: genshin-event
+    weight: 74
+    url: /genshin-impact/event/
+    params:
+      header: 원신 이벤트 임무 이야기
+      description: 원신 이벤트 임무 이야기
+      icon:
+        vendor: custom
+        name: genshin_event_quest
+  - name: 블로그
+    identifier: blog
+    weight: 100
+    url: https://tetralog.onrender.com/
+    params:
+      icon:
+        vendor: font-awesome-solid
+        name: up-right-from-square

@@ -1,0 +1,12 @@
+{{/* Custom page meta */}}
+{{- $ancestors := partial "hb-custom/functions/ancestors" .Page -}}
+<span class="hb-blog-post-section">
+  <div class="badge bg-secondary text-decoration-none fw-normal">
+  {{- range $i, $a := $ancestors -}}
+    <a class="bg-secondary text-decoration-none fw-normal" style="color: var(--hb-badge-color);" href="{{ $a.RelPermalink }}">{{ $a.Title }}</a>
+    {{- if ne $i (sub ($ancestors | len) 1) -}}
+    <div class="bg-secondary text-decoration-none fw-normal" style="display: inline-block; color: var(--hb-badge-color); opacity: 0.45;">&nbsp;/&nbsp;</div>
+    {{- end -}}
+  {{- end -}}
+  </div>
+</span>

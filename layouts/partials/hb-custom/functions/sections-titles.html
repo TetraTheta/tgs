@@ -1,0 +1,9 @@
+{{/* Overriding 'base/functions/sections-titles' for Page Title */}}
+{{- $removals := slice "Blog" "블로그" -}}
+{{- $sections := partial "base/functions/sections-titles" .Page | collections.Reverse -}}
+{{- range $r := $removals  -}}
+  {{- if eq (index $sections 0) $r -}}
+    {{- $sections = after 1 $sections -}}
+  {{- end -}}
+{{- end -}}
+{{- return $sections -}}

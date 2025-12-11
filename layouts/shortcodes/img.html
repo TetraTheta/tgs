@@ -1,0 +1,35 @@
+{{- $raw := .Get 0 -}}
+{{- $page := .Page -}}
+
+{{- if findRE `^https?://` $raw -}}
+  {{- partial "images/image" (dict "Filename" $raw "Page" $page) -}}
+{{- else -}}
+  {{- $dir := .Page.File.Dir -}}
+  {{- $abs := path.Clean (printf "%s/%s" $dir $raw) -}}
+  {{- $relBundle := path.Dir (replaceRE `^content/` "" $abs) -}}
+  {{- $bundle := site.GetPage $relBundle -}}
+  {{- if not $bundle }}
+    {{- errorf "[img] couldn’t find page for %q (resolved %q)" $raw $relBundle -}}
+  {{- end }}
+
+  {{- $ext := path.Ext $raw -}}
+  {{- $candidate := $raw -}}
+  {{- if eq $ext "" -}}
+    {{- $found := "" -}}
+    {{- range $fmt := slice "webp" "png" "jpg" "jpeg" -}}
+      {{- $try := printf "%s.%s" $raw $fmt -}}
+      {{- if $bundle.Resources.GetMatch $try -}}
+        {{- $found = $try -}}
+        {{- break -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if eq $found "" -}}
+      {{- warnf "[img] resource not found for %q in bundle %q (tried webp/png/jpg/jpeg)" $raw $relBundle -}}
+    {{- else -}}
+      {{- $candidate = $found -}}
+    {{- end -}}
+  {{- end -}}
+  
+  {{- $filename := path.Base $candidate -}}
+  {{- partial "images/image" (dict "Filename" $filename "Page" $bundle) -}}
+{{- end -}}

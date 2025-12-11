@@ -1,0 +1,10 @@
+{{/* Return ancestors without 'Blog' | Accepts: Page */}}
+{{- $removals := slice "Blog" "블로그" -}}
+{{- $ancestors := slice -}}
+{{- range $a := .Ancestors.Reverse -}}
+  {{- if or $a.IsHome (in $removals $a.Title) -}}
+    {{- continue -}}
+  {{- end -}}
+  {{- $ancestors = $ancestors | append $a -}}
+{{- end -}}
+{{- return $ancestors -}}

@@ -1,0 +1,29 @@
+{{- /* Removed param check. Always use X shortcode. */ -}}
+{{- if .Page.Site.Config.Privacy.X.Simple -}}
+  {{- template "_shortcodes/x_simple.html" . -}}
+{{- else -}}
+  {{- $id := or (.Get "id") "" -}}
+  {{- $user := or (.Get "user") "" -}}
+  {{- if and $id $user -}}
+    {{- /* Always DNT */ -}}
+    {{- template "render-x" (dict "id" $id "user" $user "dnt" true "name" .Name "position" .Position) -}}
+  {{- else -}}
+    {{- errorf "The x shortcode requires two named parameters: 'user' and 'id'. See %s" .Position -}}
+  {{- end -}}
+{{- end -}}
+
+{{- define "render-x" -}}
+  {{- $url := printf "https://x.com/%v/status/%v" .user .id -}}
+  {{- $query := querify "url" $url "dnt" .dnt "align" "center" "lang" "ko" "theme" "dark" -}}
+  {{- $request := printf "https://publish.x.com/oembed?%s" $query -}}
+  {{- with try (resources.GetRemote $request) -}}
+    {{- with .Err -}}
+      {{- warnf "%s" . -}}
+      {{- return -}}
+    {{- else with .Value -}}
+      {{- (. | transform.Unmarshal).html | safeHTML -}}
+    {{- else -}}
+      {{- warnidf "shortcode-x-getremote" "The x shortcode was unable to retrieve the remote data. See %s" .position -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

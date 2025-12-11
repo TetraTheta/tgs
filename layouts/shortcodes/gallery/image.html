@@ -1,0 +1,67 @@
+{{- $page := .Page -}}
+
+{{- $srcRaw := .Get "src" -}}
+{{- if eq $srcRaw "" -}}
+  {{- errorf "[gallery/image] src is required (usage: src=\"001|002|003\")" -}}
+{{- end -}}
+{{- $items := split $srcRaw "|" -}}
+{{- if or (lt (len $items) 1) (gt (len $items) 3) -}}
+  {{- errorf "[gallery] pass 1–3 pipe‑separated images, got %d" (len $items) -}}
+{{- end -}}
+
+{{- $alignLong := .Get "align" -}}
+{{- $alignShort := .Get "a" -}}
+{{- $align := cond (ne $alignLong "") $alignLong (cond (ne $alignShort "") $alignShort "center") -}}
+
+{{- $captionLong := .Get "caption" -}}
+{{- $captionShort := .Get "c" -}}
+{{- $caption := cond (ne $captionLong "") $captionLong (cond (ne $captionShort "") $captionShort "") -}}
+
+{{- $widthLong := .Get "width" -}}
+{{- $widthShort := .Get "w" -}}
+{{- $width := cond (ne $widthLong "") $widthLong (cond (ne $widthShort "") $widthShort "100%") -}}
+
+{{- $pct := cond (eq (len $items) 1) "100%" (cond (eq (len $items) 2) "49.5%" "32.5%") -}}
+
+<div class="gallery" align="{{$align}}">
+  <div style="width:{{$width}}">
+    <figure class="gallery-figure">
+      <div class="gallery-container">
+        {{- range $items -}}
+          {{- $raw := . -}}
+          {{- if findRE `^https?://` $raw -}}
+          <div class="gallery-inner" style="width:{{$pct}}">{{- partial "images/image" (dict "Filename" $raw "Page" $page) -}}</div>
+            {{- continue -}}
+          {{- end -}}
+          {{- $abs := path.Clean (printf "%s/%s" $page.Page.File.Dir $raw) -}}
+          {{- $relBundle := path.Dir (replaceRE `^content/` "" $abs) -}}
+          {{- $bundle := site.GetPage $relBundle -}}
+          {{- if not $bundle -}}
+            {{- errorf "[gallery/image] bundle not found for %q (resolved %q)" $raw $relBundle -}}
+          {{- end -}}
+          {{- $ext := path.Ext $raw -}}
+          {{- $candidate := $raw -}}
+          {{- if eq $ext "" -}}
+            {{- $found := "" -}}
+            {{- range $fmt := slice "webp" "png" "jpg" "jpeg" -}}
+              {{- $try := printf "%s.%s" $raw $fmt -}}
+              {{- if $bundle.Resources.GetMatch $try -}}
+                {{- $found = $try -}}
+                {{- break -}}
+              {{- end -}}
+            {{- end -}}
+            {{- if eq $found "" -}}
+              {{- warnf "[gallery/image] no resource for %q in %q (tried webp/png/jpg/jpeg)" $raw $relBundle -}}
+            {{- else -}}
+              {{- $candidate = $found -}}
+            {{- end -}}
+          {{- end -}}
+        <div class="gallery-inner" style="width:{{$pct}}">{{- partial "images/image" (dict "Filename" $candidate "Page" $bundle) -}}</div>
+        {{- end -}}
+      </div>
+      {{- if gt (len $caption) 0 -}}
+      <figcaption class="gallery-figcaption">{{ $caption | markdownify }}</figcaption>
+      {{- end -}}
+    </figure>
+  </div>
+</div>

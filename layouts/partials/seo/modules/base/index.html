@@ -1,0 +1,9 @@
+{{/* Generate the description meta tag. */}}
+{{- if or .Summary .Description -}}
+{{- $summary := partial "hb-custom/functions/get-summary" . -}}
+<meta name="description" content="{{ $summary }}" />
+{{- end -}}
+{{/* Generate the noindex meta tag. */}}
+{{- if .Params.noindex -}}
+<meta name="robots" content="noindex">
+{{- end -}}

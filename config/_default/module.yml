@@ -1,0 +1,83 @@
+# The order of module is very important, precedence from top to bottom.
+imports:
+  # header themes
+  - path: github.com/hbstack/header/themes/pills
+
+  # my custom things
+  - path: github.com/hbstack/announcement-bar
+  - path: github.com/hbstack/bs-tooltip/modules/abbr # Disabled for a while (needs SCSS update)
+  - path: github.com/hbstack/blockquote-alerts
+
+  # syntax highlighting
+  - path: github.com/hbstack/syntax-highlighting/styles/xcode-dark
+
+  # icons modules
+  - path: github.com/hugomods/icons/vendors/bootstrap
+  - path: github.com/hugomods/icons/vendors/font-awesome
+  - path: github.com/hugomods/icons/vendors/lucide
+  - path: github.com/hugomods/icons/vendors/mdi
+
+  # blog
+  - path: github.com/hbstack/blog/modules/content-panel
+  - path: github.com/hbstack/blog/modules/disqus
+  #- path: github.com/hbstack/blog/modules/giscus
+  - path: github.com/hbstack/blog/modules/social-share-buttons
+  - path: github.com/hbstack/blog/modules/toc-scrollspy
+  #- path: github.com/hbstack/blog/modules/sidebar/posts
+  #- path: github.com/hbstack/blog/modules/sidebar/taxonomies
+
+  # docs
+  - path: github.com/hbstack/docs/modules/content-panel
+  - path: github.com/hbstack/docs/modules/disqus
+  #- path: github.com/hbstack/docs/modules/giscus
+  - path: github.com/hbstack/docs/modules/social-share-buttons
+  - path: github.com/hbstack/docs/modules/toc-scrollspy
+
+  # ads / analytics
+  - path: github.com/hugomods/google-adsense
+  - path: github.com/hugomods/google-analytics
+  - path: github.com/hugomods/microsoft-clarity
+
+  # recommended modules
+  # https://github.com/hbstack/meta/blob/main/recommended/hugo.toml
+  #- path: github.com/hbstack/meta/recommended
+  # replacement of [recommended] start
+  - path: github.com/hbstack/back-to-top
+  #- path: github.com/hbstack/bigger-picture # Not Used - FancyBox
+  - path: github.com/hbstack/code-block-panel
+  - path: github.com/hbstack/docs
+  - path: github.com/hbstack/docs/modules/breadcrumb
+  #- path: github.com/hbstack/docs/modules/featured-image # Not Used - Need better alternatives
+  - path: github.com/hbstack/docs/modules/heading-sign
+  - path: github.com/hbstack/docs/modules/doc-nav
+  - path: github.com/hbstack/blog
+  - path: github.com/hbstack/blog/modules/breadcrumb
+  #- path: github.com/hbstack/blog/modules/featured-image # Not Used - Need better alternatives
+  - path: github.com/hbstack/blog/modules/heading-sign
+  - path: github.com/hbstack/blog/modules/post-nav
+  - path: github.com/hbstack/blog/modules/related-posts
+  - path: github.com/hbstack/mermaid
+  - path: github.com/hugomods/katex
+  - path: github.com/hbstack/bootstrap
+  - path: github.com/hugomods/images
+  - path: github.com/hugomods/shortcodes
+  - path: github.com/hbstack/footer
+  - path: github.com/hbstack/footer/modules/socials
+  - path: github.com/hbstack/header
+  #- path: github.com/hbstack/header/modules/language-picker # Not Used - Korean only
+  - path: github.com/hbstack/header/modules/socials
+  - path: github.com/hbstack/header/modules/search
+  #- path: github.com/hbstack/header/modules/theme-toggle # Required for Dark Mode
+  - path: github.com/hugomods/seo/modules/alternatives
+  - path: github.com/hugomods/seo/modules/base
+  - path: github.com/hugomods/seo/modules/favicons
+  - path: github.com/hugomods/seo/modules/open-graph
+  - path: github.com/hugomods/seo/modules/schema
+  #- path: github.com/hugomods/seo/modules/translations # Not Used - Korean only
+  - path: github.com/hugomods/seo/modules/twitter-cards
+  #- path: github.com/hbstack/syntax-highlighting/styles/gruvbox # Not Used - xcode-dark
+  - path: github.com/hbstack/noscript
+  - path: github.com/hbstack/progress-bar
+  #- path: github.com/hbstack/pwa # Not Used
+  #- path: github.com/hbstack/scrollbar
+  # replacement of [recommended] end

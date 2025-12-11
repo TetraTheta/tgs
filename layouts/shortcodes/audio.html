@@ -1,0 +1,55 @@
+{{- with $path := or (.Get "path") (.Get 0) -}}
+  {{- /* Get Permalink */ -}}
+  {{- $path = $.Page.Resources.Get $path -}}
+  
+  {{- /* Set defaults */ -}}
+  {{- $autoplay := 0 -}}
+  {{- $loop := 0 -}}
+  {{- $mute := 0 -}}
+  {{- $preload := "auto" -}}
+  {{- $width := "50%" -}}
+  
+  {{- /* Get arguments */ -}}
+  {{- if in (slice "false" false 0) ($.Get "autoplay") -}}
+    {{- $autoplay = 0 -}}
+  {{- else if in (slice "true" true 1) ($.Get "autoplay") -}}
+    {{- $autoplay = 1 -}}
+  {{- end -}}
+  {{- if in (slice "false" false 0) ($.Get "loop") -}}
+    {{- $loop = 0 -}}
+  {{- else if in (slice "true" true 1) ($.Get "loop") -}}
+    {{- $loop = 1 -}}
+  {{- end -}}
+  {{- if in (slice "false" false 0) ($.Get "mute") -}}
+    {{- $mute = 0 -}}
+  {{- else if or (in (slice "true" true 1) ($.Get "mute")) $autoplay -}}
+    {{- $mute = 1 -}}
+  {{- end -}}
+  {{- $preload := or ($.Get "preload") $preload -}}
+  {{- $width := or ($.Get "width") $width -}}
+  
+  {{- /* Set audio attributes */ -}}
+  {{- $audioAttributes := dict
+    "autoplay" $autoplay
+    "controls" "controls"
+    "controlsList" "nodownload"
+    "loop" $loop
+    "mute" $mute
+    "src" $path.RelPermalink
+    "style" "width: 100%"
+  -}}
+<div style="max-width: {{ $width }}; margin: 0 auto;">
+  <audio
+    {{- range $k, $v := $audioAttributes -}}
+      {{- if $v -}}
+        {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
+      {{- end -}}
+    {{- end -}}
+  ></audio>
+  {{- if $.Get "caption" -}}
+  <figcaption>{{ $.Get "caption" | safeHTML | markdownify }}</figcaption>
+  {{- end -}}
+</div>
+{{- else -}}
+  {{- errorf "audio shortcode requires an path argument. See %s" .Position -}}
+{{- end -}}

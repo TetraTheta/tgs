@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'D2 coding';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('D2Coding'), url('D2Coding.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'D2 coding';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('D2Coding Bold'), url('D2CodingBold.woff2') format('woff2');
+}

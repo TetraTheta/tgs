@@ -1,0 +1,12 @@
+{{/* [Temporary Fix] Returns content summary (for RSS): Limit to 500 characters | Accepts: Page */}}
+{{- $summary := "" -}}
+{{- if .IsPage -}}
+  {{- $page := .Page -}}
+  {{- $summary = $page.Content | plainify | transform.XMLEscape -}}
+  {{- $summary = $summary | truncate 350 -}}
+  {{- $summary = replaceRE "[\r\n]+" " " $summary -}}
+{{- else -}}
+  {{- $summary = .Summary -}}
+{{- end -}}
+{{- $summary = trim ($summary | transform.XMLEscape) " " -}}
+{{- return $summary -}}

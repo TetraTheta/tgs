@@ -1,0 +1,30 @@
+{{- $images := partial "_funcs/get-page-images" . }}
+{{- with index $images 0 }}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ .Permalink }}">
+{{- else }}
+  <meta name="twitter:card" content="summary">
+{{- end }}
+
+{{- with or .Title site.Title site.Params.title | plainify -}}
+  <meta name="twitter:title" content="{{ . }}">
+{{- end }}
+
+{{- if or .Description .Summary site.Params.description -}}
+  {{- $summary := partial "hb-custom/functions/get-summary" . -}}
+  <meta name="twitter:description" content="{{ $summary | plainify }}">
+  {{- /* warnf "[%s] [TWT] %s" .Title $summary */ -}}
+{{- end }}
+
+{{- $twitterSite := "" }}
+{{- with site.Params.social }}
+  {{- if reflect.IsMap . }}
+    {{- with .twitter }}
+      {{- $content := . }}
+      {{- if not (strings.HasPrefix . "@") }}
+        {{- $content = printf "@%v" . }}
+      {{- end }}
+      <meta name="twitter:site" content="{{ $content }}">
+    {{- end }}
+  {{- end }}
+{{- end }}

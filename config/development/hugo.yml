@@ -1,0 +1,4 @@
+enableGitInfo: false
+
+buildDrafts: true
+buildFuture: true

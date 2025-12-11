@@ -1,0 +1,19 @@
+{{/* [Temporary Fix] Returns summary | Accepts: Page */}}
+{{- $summary := "" -}}
+{{- if .IsPage -}}
+  {{- $page := .Page -}}
+  {{- if $page.Params.summary -}}
+    {{/* check summary in front matter */}}
+    {{- $summary = $page.Params.summary | plainify | htmlUnescape -}}
+    {{- $summary = replaceRE "[\r\n]+" " " $summary -}}
+  {{- else -}}
+    {{- $summaryLength := int $page.Site.Params.ParamSummaryLength -}}
+    {{- $summary = $page.Content | plainify | htmlUnescape -}}
+    {{- $summary = $summary | truncate $summaryLength -}}
+    {{- $summary = replaceRE "[\r\n]+" " " $summary -}}
+  {{- end -}}
+{{- else -}}
+  {{- $summary = .Summary -}}
+{{- end -}}
+{{- $summary = trim ($summary | htmlUnescape) " " -}}
+{{- return $summary -}}
