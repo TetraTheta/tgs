@@ -1,3 +1,3 @@
 ---
-title: TetraLog - 그냥저냥 잡다한 이야기
+title: TetraLog Game Story - 게임 스토리 모음집
 ---
