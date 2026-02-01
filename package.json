@@ -14,7 +14,7 @@
   "dependencies": {
     "@hbstack/node-packages": "^0.1.5",
     "cheerio": "^1.2.0",
-    "commander": "^14.0.2",
+    "commander": "^14.0.3",
     "fast-sort": "^3.4.1",
     "html-minifier-terser": "^7.2.0",
     "minify-xml": "^4.5.2"
