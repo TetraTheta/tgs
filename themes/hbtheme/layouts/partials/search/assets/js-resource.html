@@ -1,0 +1,62 @@
+{{/* Locales. */}}
+{{- $locales := newScratch }}
+{{- range $lang, $messages := hugo.Data.search.i18n }}
+  {{- $locale := resources.Get "search/templates/locale.html" }}
+  {{- $localeURL := printf "/js/search/locales.%s.json" $lang }}
+  {{- $locale = $locale | resources.ExecuteAsTemplate $localeURL . }}
+  {{- $locales.Set $lang $locale.Permalink }}
+{{- end }}
+{{- $js := resources.Get "search/js/index.ts" }}
+{{/* The SVG icons. */}}
+{{- $icons := dict
+  "page" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "file-earmark-richtext" "size" "2em"))
+  "heading" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "hash" "size" "2em"))
+  "history" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "clock" "size" "2em"))
+  "meta" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "info-circle" "size" "2em"))
+  "search" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "search" "size" "1.25em"))
+  "spinner" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "arrow-clockwise" "size" "1.35em"))
+  "lang" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "translate" "size" "1em"))
+  "sort" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "sort-down" "size" "1em"))
+  "expand" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "chevron-expand" "size" "1em"))
+  "year" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "calendar-check" "size" "1em"))
+  "taxonomies" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "tags" "size" "1em"))
+  "reset" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "x" "size" "1.5em"))
+}}
+{{/* Include the following icons when necessary. */}}
+{{- if default true .Site.Params.search.index_all_pages }}
+  {{- $icons = merge $icons (dict
+    "home" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "house" "size" "2em"))
+    "section" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "list" "size" "2em"))
+    "term" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "tag" "size" "2em"))
+    "taxonomy" (partial "icons/icon" (dict "vendor" "bootstrap" "name" "tags" "size" "2em")))
+  }}
+{{- end }}
+{{/* Index files URL. */}}
+{{- $indices := default slice site.Params.search.indices }}
+{{- range hugo.Sites }}
+  {{- $site := . }}
+  {{- with .Home.OutputFormats.Get "SearchIndex" }}
+    {{- $hash := partialCached "search-index/functions/hash" $site $site }}
+    {{- $indexURL := printf "%s?v=%s" .Permalink $hash }}
+    {{- $indices = $indices | append $indexURL }}
+  {{- end }}
+{{- end }}
+{{- if not $indices }}
+  {{- errorf `[github.com/hugomods/search] no search index is specified. To rectify this, you can either add the "SearchIndex" to the "outputs.home" for internal indices, or specify external indices with the "search.indices" parameter.` }}
+{{- end }}
+{{- $defaultParams := partialCached "search/functions/params" . }}
+{{- $params := merge $defaultParams (dict
+  "icons" $icons
+  "indices" $indices
+  "locales" $locales.Values
+  "histories" (default true site.Params.search.histories)
+  "historiesCount" (default 5 site.Params.search.histories_count)
+  "lang" hugo.Sites.Default.Language.Lang)
+}}
+{{- $options := dict
+  "targetPath" "js/search.js"
+  "minify" hugo.IsProduction
+  "params" $params
+}}
+{{- $js = $js | js.Build $options }}
+{{- return $js -}}

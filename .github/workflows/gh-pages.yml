@@ -37,10 +37,10 @@ jobs:
         id: pages
         uses: actions/configure-pages@v6
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
         with:
-          bun-version: latest
+          version: 10
 
       - name: Setup Dart Sass
         run: sudo snap install dart-sass && sudo snap alias dart-sass sass
@@ -51,14 +51,14 @@ jobs:
           hugo-version: "latest"
           extended: true
 
-      - name: Install Bun dependencies
-        run: bun ci
+      - name: Install pnpm dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
-        run: bun run build # --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: pnpm run build # --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5

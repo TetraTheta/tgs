@@ -1,0 +1,20 @@
+{
+  "name": "@tetralog/cli",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cli": "node ./cli.mjs"
+  },
+  "dependencies": {
+    "ansi-styles": "^6.2.3",
+    "cheerio": "^1.2.0",
+    "commander": "^14.0.3",
+    "domhandler": "^5.0.3",
+    "fast-sort": "^3.4.1",
+    "glob": "^13.0.0",
+    "html-minifier-terser": "^7.2.0",
+    "minify-xml": "^4.5.2",
+    "parse5": "^8.0.0",
+    "parse5-htmlparser2-tree-adapter": "^8.0.0"
+  }
+}

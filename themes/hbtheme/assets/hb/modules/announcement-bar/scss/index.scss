@@ -1,0 +1,66 @@
+/*! purgecss start ignore */
+.hb-header-nav {
+    flex-direction: column;
+    padding-top: 0;
+
+    .container-fluid {
+        padding-top: var(--#{$prefix}navbar-padding-y);
+    }
+}
+
+.hb-announcement {
+    display: none;
+
+    &.active {
+        display: block;
+        animation: hb-announcement-in .5s ease;
+    }
+
+    &.inactivating {
+        animation: hb-announcement-out .5s ease;
+    }
+}
+
+.hb-announcement-bar {
+    --#{$prefix}border-opacity: 0.125;
+
+    color: var(--#{$prefix}navbar-color);
+
+    a {
+        color: var(--#{$prefix}navbar-color);
+    }
+
+    &.active {
+        max-height: 30vh;
+        overflow: auto!important;
+        padding-top: var(--#{$prefix}navbar-padding-y);
+        
+        .hb-announcement {
+            display: block!important;
+            transition: .3s ease-in-out;
+            margin-bottom: .25rem;
+        }
+    }
+}
+
+@keyframes hb-announcement-in {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes hb-announcement-out {
+    0% {
+        transform: translateY(0%);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+/*! purgecss end ignore */

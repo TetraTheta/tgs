@@ -1,0 +1,7 @@
+{{- with .Site.RegularPages.Related . | first .Site.Params.hb.blog.related_posts.number }}
+  {{- if eq (default "slide" site.Params.hb.blog.related_posts.list_style) "slide" }}
+    {{- partial "hb/modules/blog-related-posts/slide" . }}
+  {{- else }}
+    {{- partial "hb/modules/blog-related-posts/vertical" . }}
+  {{- end }}
+{{- end }}

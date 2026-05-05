@@ -1,12 +1,13 @@
 title: TetraLog Game Story
 baseURL: https://tetratheta.github.io/tgs/
+theme: hbtheme
 
 # Copyright, the {year} is the placeholder of this year.
 copyright: "Copyright © {year}. TetraTheta All Rights Reserved."
 
 defaultContentLanguage: ko
 defaultContentLanguageInSubdir: false
-languageCode: ko
+locale: ko-KR
 
 hasCJKLanguage: false
 summaryLength: 25 # [Summary Fix] Not used. Use params.ParamSummaryLength instead.

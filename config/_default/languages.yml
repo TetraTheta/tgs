@@ -1,4 +1,5 @@
 ko:
-  languageCode: ko
-  languageName: 한국어
+  locale: ko-KR
+  label: 한국어
+  direction: ltr
   weight: 1

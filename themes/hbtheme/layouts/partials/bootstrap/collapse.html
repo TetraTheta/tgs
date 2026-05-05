@@ -1,0 +1,44 @@
+{{- if not (.Page.Scratch.Get "collapseCounter") -}}
+  {{- .Page.Scratch.Set "collapseCounter" 0 -}}
+{{- end -}}
+{{- .Page.Scratch.Add "collapseCounter" 1 -}}
+{{- $id := printf "collapse-%d" (.Page.Scratch.Get "collapseCounter") -}}
+{{- $heading := "" -}}
+{{- $style := "primary" -}}
+{{- $expand := false -}}
+{{- $rounded := true -}}
+{{- $border := true }}
+{{- $markdown := true }}
+{{- if .IsNamedParams -}}
+  {{- $heading = .Get "heading" -}}
+  {{- if isset $.Params "markdown" }}{{ $markdown = $.Get "markdown" }}{{ end -}}
+  {{- with .Get "style" }}{{ $style = . }}{{ end -}}
+  {{- with .Get "expand" }}{{ $expand = . }}{{ end -}}
+  {{- with .Get "rounded" }}{{ $rounded = . }}{{ end -}}
+  {{- with .Get "border" }}{{ $border = . }}{{ end -}}
+{{- else }}
+  {{- $heading = .Get 0 }}
+  {{- with .Get 1 }}{{ $style = . }}{{ end -}}
+  {{- with .Get 2 }}{{ $expand = . }}{{ end -}}
+{{- end -}}
+<div
+  class="collapse-wrapper mb-1">
+  <a
+    type="button"
+    class="collapse-toggle text-decoration-none text-bg-{{ $style }} py-1 px-2"
+    data-bs-toggle="collapse"
+    href="#{{ $id }}"
+    aria-expanded="{{ cond $expand `true` `false` }}"
+    aria-controls="{{ $id }}">
+    {{- $heading -}}
+  </a>
+  <div
+    class="collapse{{ cond $border ` border` `` }}{{ cond $rounded ` rounded-bottom rounded-end` `` }} px-2 pt-2 pb-1 mb-3{{ cond $expand ` show` `` }}"
+    id="{{ $id }}">
+    {{ if $markdown }}
+      {{- trim .Inner "\r\n" | .Page.RenderString -}}
+    {{ else }}
+      {{ .Inner }}
+    {{ end }}
+  </div>
+</div>

@@ -1,0 +1,9 @@
+.hb-footer {
+    .hb-social {
+        color: var(--#{$prefix}body-color);
+
+        &:hover {
+            color: var(--#{$prefix}primary);
+        }
+    }
+}

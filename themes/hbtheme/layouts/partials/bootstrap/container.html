@@ -1,0 +1,53 @@
+{{- $breakpoint := "" }}
+{{- $class := "" }}
+{{- $bg := "" }}
+{{- $bgColor := "" }}
+{{- if .IsNamedParams }}
+  {{- $breakpoint = .Get "breakpoint" }}
+  {{- $class = .Get "class" }}
+  {{- $bg = .Get "bg" }}
+  {{- $bgColor = .Get "bgColor" }}
+{{- else }}
+  {{- $breakpoint = .Get 0 }}
+  {{- $class = .Get 1 }}
+{{- end }}
+{{- $classes := slice }}
+{{- if $breakpoint }}
+  {{- $classes = $classes | append (printf "container-%s" $breakpoint) }}
+{{- else }}
+  {{- $classes = $classes | append "container" }}
+{{- end }}
+{{- with $class }}{{ $classes = $classes | append . }}{{ end }}
+{{- $style := slice }}
+{{- if ne $bg "" }}
+  {{- $bgRes := false }}
+  {{- $classes = $classes | append "" }}
+  {{- with .Page.Resources.Get $bg }}
+    {{- $bgRes = . }}
+    {{- $bg = .RelPermalink }}
+  {{- else }}
+    {{- with resources.Get $bg }}
+      {{- $bgRes = . }}
+      {{- $bg = .RelPermalink }}
+    {{- end }}
+  {{- end }}
+  {{- with and (eq $bgColor "") $bgRes }}
+    {{- with index .Colors 0 }}
+      {{- $bgColor = . }}
+    {{- end }}
+  {{- end }}
+  {{- $style = $style | append
+    (cond
+      (ne $bgColor "")
+      (printf "background: url(%s), %s" $bg $bgColor)
+      (printf "background-image: url(%s)" $bg))
+    "background-size: cover"
+  }}
+{{- else if ne $bgColor "" }}
+  {{- $style = $style | append (printf "background-color: %s" $bgColor) }}
+{{- end }}
+<div
+  class="{{ delimit $classes ` ` }}"
+  {{ with $style }}{{ delimit . `; ` | printf `style="%s"` | safeHTMLAttr }}{{ end }}>
+  {{ .Inner }}
+</div>

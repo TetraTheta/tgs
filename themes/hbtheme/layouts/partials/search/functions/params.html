@@ -1,0 +1,28 @@
+{{- $defaults := dict
+  "modal_container" "body"
+  "modal_toggle_selector" ".search-modal-toggle"
+  "stall_threshold" 300
+  "case_sensitive" false
+  "min_match_char_length" 1
+  "location" 0
+  "threshold" 0.6
+  "distance" 100
+  "ignore_location" false
+  "shortcut_close" (slice "Escape")
+  "shortcut_search" (slice "Control" "k")
+  "paginate" 20
+  "max_results" 100
+  "expand_results_meta" false
+  "index_content" false
+  "lazy_loading" true
+  "key_weights" (dict
+    "title" 1
+    "summary" 1
+    "headings" 0.5
+    "content" 0.5
+    "lang" 1
+    "year" 1
+    "taxonomies" 0.1
+  )
+}}
+{{- return (merge $defaults site.Params.search) -}}
