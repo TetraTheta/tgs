@@ -8,7 +8,7 @@
   "dependencies": {
     "ansi-styles": "^6.2.3",
     "cheerio": "^1.2.0",
-    "commander": "^14.0.3",
+    "commander": "^15.0.0",
     "domhandler": "^6.0.0",
     "fast-sort": "^3.4.1",
     "glob": "^13.0.0",
