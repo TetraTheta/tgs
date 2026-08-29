@@ -6,28 +6,24 @@
   "type": "module",
   "scripts": {
     "build": "pnpm --filter @tetralog/cli run cli clean && hugo --gc --minify -e production && pnpm --filter @tetralog/cli run cli deslash",
-    "check-update": "pnpm dlx npm-check-updates",
     "cli": "pnpm --filter @tetralog/cli run cli",
     "dev": "hugo server --renderToMemory --disableFastRender -D -p 44",
-    "dev.prod": "hugo server --gc --minify --renderToMemory --disableFastRender -D -e production -p 44"
+    "dev.prod": "hugo server --gc --minify --renderToMemory --disableFastRender -D -e production -p 44",
+    "preinstall": "npx only-allow pnpm",
+    "update": "pnpm dlx npm-check-updates --cooldown 7d --workspaces",
+    "upgrade": "pnpm dlx npm-check-updates --cooldown 7d --workspaces -u && pnpm install"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^8.0.0",
-    "@popperjs/core": "^2.11.8",
-    "autoprefixer": "^10.5.0",
-    "bootstrap": "^5.3.8",
-    "fuse.js": "^7.3.0",
-    "postcss-cli": "^11.0.1",
-    "rtlcss": "^4.3.0"
+    "katex": "^0.18.4"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/html-minifier-terser": "^7.0.2",
-    "@types/node": "^25.6.0",
-    "eslint": "^10.3.0",
+    "@types/node": "^26.2.0",
+    "eslint": "^10.9.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.5",
-    "prettier": "^3.8.3",
-    "typescript-eslint": "^8.59.2"
+    "eslint-plugin-prettier": "^5.5.6",
+    "prettier": "^3.9.6",
+    "typescript-eslint": "^8.67.0"
   }
 }

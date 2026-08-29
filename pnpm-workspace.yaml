@@ -1,3 +1,15 @@
+minimumReleaseAge: 10080 # 7 days
+minimumReleaseAgeExclude:
+  - "brace-expansion"
+  - "postcss"
+  - "undici"
+nodeLinker: "hoisted"
+overrides:
+  "brace-expansion": ">=5.0.9"
+  "postcss": ">=8.5.18"
+  "undici": "^7.29.0"
 packages:
   - "."
   - ".script"
+  - "themes/hbtheme"
+preferSymlinkedExecutables: true # Temporary fix for pnpm

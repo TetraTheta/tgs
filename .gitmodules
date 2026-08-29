@@ -1,0 +1,3 @@
+[submodule "themes/hbtheme"]
+	path = themes/hbtheme
+	url = https://github.com/TetraTheta/hbtheme.git

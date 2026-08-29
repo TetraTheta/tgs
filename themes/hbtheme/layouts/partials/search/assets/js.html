@@ -1,5 +1,0 @@
-{{- $js := partialCached "search/assets/js-resource" . }}
-{{- if hugo.IsProduction }}
-  {{- $js = $js | fingerprint }}
-{{- end }}
-<script src="{{ $js.RelPermalink }}" defer></script>

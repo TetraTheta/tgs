@@ -10,6 +10,7 @@ tags:
 #  - 
 images:
   - 018.webp
+katex: true
 ---
 
 여태껏 모은 경영 일화가 총 11개니까, 글 하나당 4명 정도로 잘라서 글을 써야겠다. 이거, 너무 분량이 많아...
@@ -265,14 +266,16 @@ images:
 
 갑자기 문제가 수학 문제로 바뀌었다. 양양이 여기에 이의를 제기하지만, "꽃등 아래서 문제를 풀고 있으니 초롱 수수께끼가 맞다"는 해괴한 논리에 설득되고 말았다.
 
-```katex
+<div class="katex-source">
+$$
 \begin{cases}
   x+y=14\\
   2x+4y=38
 \end{cases}
-```
+$$
+</div>
 
-대충 이런 연립방정식이 나오니까, 닭({{< katex formula="x" inline=true />}})은 9마리, 토끼({{< katex formula="y" inline=true />}})는 5마리가 된다.
+대충 이런 연립방정식이 나오니까, 닭(<span>\(x\)</span>)은 9마리, 토끼(<span>\(y\)</span>)는 5마리가 된다.
 
 ![](152.webp)
 

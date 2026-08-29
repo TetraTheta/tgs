@@ -6,15 +6,15 @@
     "cli": "node ./cli.mjs"
   },
   "dependencies": {
-    "ansi-styles": "^6.2.3",
+    "ansi-styles": "^7.0.0",
     "cheerio": "^1.2.0",
     "commander": "^15.0.0",
-    "domhandler": "^6.0.0",
+    "domhandler": "^6.0.1",
     "fast-sort": "^3.4.1",
-    "glob": "^13.0.0",
+    "glob": "^13.0.6",
     "html-minifier-terser": "^7.2.0",
     "minify-xml": "^4.5.2",
-    "parse5": "^8.0.0",
-    "parse5-htmlparser2-tree-adapter": "^8.0.0"
+    "parse5": "^8.0.1",
+    "parse5-htmlparser2-tree-adapter": "^8.0.1"
   }
 }

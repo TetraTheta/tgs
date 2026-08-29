@@ -26,6 +26,13 @@ disqusShortname: 'tetralog'
 build:
   writeStats: true # required by PurgeCSS.
 
+module:
+  mounts:
+    - source: static
+      target: static
+    - source: node_modules/katex/dist
+      target: static/vendor/katex
+
 cascade:
   # Remove unprocessed files from build result
   - target:

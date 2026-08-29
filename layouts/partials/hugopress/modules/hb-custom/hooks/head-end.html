@@ -8,3 +8,9 @@
 <link rel="preload" as="style" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 <link rel="stylesheet" type="text/css" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>{{/* This must not be defer */}}
+{{/* KaTeX */}}
+{{- if .Params.katex }}
+<link rel="stylesheet" href="{{ "vendor/katex/katex.min.css" | relURL }}">
+<script defer src="{{ "vendor/katex/katex.min.js" | relURL }}"></script>
+<script defer src="{{ "vendor/katex/contrib/auto-render.min.js" | relURL }}" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+{{- end }}

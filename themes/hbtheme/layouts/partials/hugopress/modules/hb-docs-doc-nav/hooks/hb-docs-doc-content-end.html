@@ -1,3 +1,0 @@
-{{- if or (not .Page.IsSection) (ne .Page.FirstSection .Page.CurrentSection) }}
-  {{ partial "hb/modules/docs-doc-nav/index" .Page }}
-{{- end }}
