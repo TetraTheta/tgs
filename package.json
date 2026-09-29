@@ -14,16 +14,16 @@
     "upgrade": "pnpm dlx npm-check-updates --cooldown 7d --workspaces -u && pnpm install"
   },
   "dependencies": {
-    "katex": "^0.18.4"
+    "katex": "^0.18.7"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/html-minifier-terser": "^7.0.2",
-    "@types/node": "^26.2.0",
-    "eslint": "^10.9.0",
+    "@types/node": "^26.6.2",
+    "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.6",
-    "prettier": "^3.9.6",
-    "typescript-eslint": "^8.67.0"
+    "prettier": "^3.9.8",
+    "typescript-eslint": "^8.70.1"
   }
 }
