@@ -11,7 +11,7 @@
     "commander": "^15.0.0",
     "domhandler": "^6.0.1",
     "fast-sort": "^3.4.1",
-    "glob": "^13.0.6",
+    "glob": "^14.0.0",
     "html-minifier-terser": "^7.2.0",
     "minify-xml": "^4.5.2",
     "parse5": "^8.0.1",
