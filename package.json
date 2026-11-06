@@ -14,7 +14,7 @@
     "upgrade": "pnpm dlx npm-check-updates --cooldown 7d --workspaces -u && pnpm install"
   },
   "dependencies": {
-    "katex": "^0.18.7"
+    "katex": "^0.19.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
