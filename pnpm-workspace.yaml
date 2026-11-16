@@ -1,6 +1,8 @@
 minimumReleaseAge: 10080 # 7 days
 minimumReleaseAgeExclude:
+  - "@pnpm/*"
   - "brace-expansion"
+  - "pnpm"
   - "postcss"
   - "undici"
 nodeLinker: "hoisted"
